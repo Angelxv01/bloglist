@@ -1,0 +1,7 @@
+# dirs
+node_modules/
+build/
+cypress/videos/
+
+# files
+.env
