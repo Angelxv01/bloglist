@@ -14,7 +14,7 @@ import Navigation from "./components/Navigation";
 
 import Togglable from "./components/Togglable";
 
-import { initBlogs } from "./reducers/blogReducer";
+import { initBlogs, addBlog } from "./reducers/blogReducer";
 import { loadUser } from "./reducers/userReducer";
 import { loadUsers } from "./reducers/usersReducer";
 import { Entry, Title } from "./styles";
@@ -36,6 +36,12 @@ const App = () => {
     : null;
 
   const addBlogpostRef = useRef();
+
+  const addNewBlog = (blog) => {
+    addBlogpostRef.current.toggleVisibility();
+    dispatch(addBlog(blog));
+    dispatch(loadUsers());
+  };
 
   useEffect(() => {
     dispatch(initBlogs());
@@ -72,7 +78,7 @@ const App = () => {
             Blogs
           </Title>
           <Togglable buttonLabel="create" ref={addBlogpostRef}>
-            <AddBlogpost toggle={addBlogpostRef} />
+            <AddBlogpost addNewBlog={addNewBlog} />
           </Togglable>
           {blogs
             .sort((a, b) => b.likes - a.likes)

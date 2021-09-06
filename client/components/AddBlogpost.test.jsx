@@ -6,7 +6,7 @@ import AddBlogPost from "./AddBlogpost";
 test("should add correct data", () => {
   const handleCreate = jest.fn();
 
-  const component = render(<AddBlogPost handleCreate={handleCreate} />);
+  const component = render(<AddBlogPost addNewBlog={handleCreate} />);
 
   const title = component.container.querySelector("#title");
   const author = component.container.querySelector("#author");
@@ -26,10 +26,11 @@ test("should add correct data", () => {
 
   const form = component.container.querySelector("form");
   fireEvent.submit(form);
-
+  // eslint-disable-next-line no-console
+  console.log(handleCreate.mock.calls);
   expect(handleCreate.mock.calls).toHaveLength(1);
-  const [[newTitle, newAuthor, newUrl]] = handleCreate.mock.calls;
-  expect(newTitle).toBe("test blog title");
-  expect(newAuthor).toBe("Angel");
-  expect(newUrl).toBe("dummy url");
+  const [[result]] = handleCreate.mock.calls;
+  expect(result.title).toBe("test blog title");
+  expect(result.author).toBe("Angel");
+  expect(result.url).toBe("dummy url");
 });

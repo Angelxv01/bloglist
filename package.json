@@ -6,7 +6,8 @@
     "build": "webpack --mode=production",
     "start": "webpack serve --mode=development",
     "eslint": "eslint --fix \"./**/*.{js,jsx}\"",
-    "format": "prettier -w ."
+    "format": "prettier -w .",
+    "test": "jest"
   },
   "license": "MIT",
   "devDependencies": {
@@ -37,6 +38,7 @@
     "webpack-dev-server": "^4.1.0"
   },
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/polyfill": "^7.12.1",
     "@testing-library/user-event": "^12.6.3",
     "axios": "^0.21.1",
@@ -64,5 +66,8 @@
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.0",
     "terser-webpack-plugin": "^5.2.3"
+  },
+  "jest": {
+    "testEnvironment": "jsdom"
   }
 }

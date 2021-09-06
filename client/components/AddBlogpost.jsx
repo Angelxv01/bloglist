@@ -1,24 +1,18 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { StyledButton, Grid, StyledInput } from "../styles";
-import { addBlog } from "../reducers/blogReducer";
-import { loadUsers } from "../reducers/usersReducer";
 
-const AddBlogPost = ({ toggle }) => {
+const AddBlogPost = ({ addNewBlog }) => {
   const emptyState = { title: "", author: "", url: "" };
   const [blog, setBlog] = useState(emptyState);
-  const dispatch = useDispatch();
 
   const createBlog = () => {
-    dispatch(addBlog(blog));
-    dispatch(loadUsers());
+    addNewBlog(blog);
     setBlog(emptyState);
-    toggle.current.toggleVisibility();
   };
 
   return (
-    <div>
+    <form onSubmit={createBlog}>
       <Grid rows={1}>
         <StyledInput>
           title
@@ -49,22 +43,18 @@ const AddBlogPost = ({ toggle }) => {
             onChange={({ target }) => setBlog({ ...blog, url: target.value })}
           />
         </StyledInput>
+        <StyledButton type="submit">Create</StyledButton>
       </Grid>
-      <StyledButton onClick={createBlog}>Create</StyledButton>
-    </div>
+    </form>
   );
 };
 
 AddBlogPost.propTypes = {
-  toggle: PropTypes.oneOfType([
-    PropTypes.func,
-    // eslint-disable-next-line react/forbid-prop-types
-    PropTypes.shape({ current: PropTypes.object }),
-  ]),
+  addNewBlog: PropTypes.func,
 };
 
 AddBlogPost.defaultProps = {
-  toggle: { current: {} },
+  addNewBlog: () => {},
 };
 
 export default AddBlogPost;

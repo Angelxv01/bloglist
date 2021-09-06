@@ -64,7 +64,7 @@ export const Title = styled.h1`
   text-transform: ${(props) => props.capitalize && "capitalize"};
 `;
 
-export const Grid = styled.form`
+export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(${(props) => props.rows}, 1fr);
   grid-auto-rows: minmax(24px, auto);
