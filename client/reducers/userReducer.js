@@ -2,6 +2,7 @@ import loginService from "../services/login";
 import blogsService from "../services/blogs";
 
 import { loadState, saveState, removeState } from "../services/localstorage";
+import { setNotification } from "./notificationReducer";
 
 const reducer = (state = null, action) => {
   switch (action.type) {
@@ -25,10 +26,16 @@ export const loadUser = () => (dispatch) => {
 };
 
 export const loginUser = (credentials) => async (dispatch) => {
-  const user = await loginService.login(credentials);
-  blogsService.setToken(user.token);
-  dispatch({ type: "LOGIN_USER", data: user });
-  saveState("loggedUser", user);
+  try {
+    const user = await loginService.login(credentials);
+    blogsService.setToken(user.token);
+    dispatch({ type: "LOGIN_USER", data: user });
+    saveState("loggedUser", user);
+  } catch (err) {
+    dispatch(
+      setNotification({ message: err.response.data.error, type: "error" }, 5)
+    );
+  }
 };
 
 export const logoutUser = () => (dispatch) => {

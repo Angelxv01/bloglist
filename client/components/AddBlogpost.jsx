@@ -6,7 +6,8 @@ const AddBlogPost = ({ addNewBlog }) => {
   const emptyState = { title: "", author: "", url: "" };
   const [blog, setBlog] = useState(emptyState);
 
-  const createBlog = () => {
+  const createBlog = (e) => {
+    e.preventDefault();
     addNewBlog(blog);
     setBlog(emptyState);
   };

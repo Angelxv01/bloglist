@@ -25,11 +25,14 @@ const Users = ({ users }) => (
 );
 
 Users.propTypes = {
-  users: PropTypes.arrayOf({
-    id: PropTypes.string,
-    username: PropTypes.string,
-    blogs: PropTypes.array,
-  }),
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      username: PropTypes.string,
+      // eslint-disable-next-line react/forbid-prop-types
+      blogs: PropTypes.array,
+    })
+  ),
 };
 
 Users.defaultProps = {

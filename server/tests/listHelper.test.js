@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 const listHelper = require("../utils/list_helper");
 
 const listWithOneBlog = [

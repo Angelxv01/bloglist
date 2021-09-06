@@ -83,7 +83,11 @@ const App = () => {
           {blogs
             .sort((a, b) => b.likes - a.likes)
             .map((blog) => (
-              <Entry to={`/blogs/${blog.id}`} key={blog.id}>
+              <Entry
+                to={`/blogs/${blog.id}`}
+                key={blog.id}
+                className="toggleShow"
+              >
                 {blog.title}
               </Entry>
             ))}

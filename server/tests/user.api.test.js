@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 const mongoose = require("mongoose");
 const bcryptjs = require("bcryptjs");
 const supertest = require("supertest");

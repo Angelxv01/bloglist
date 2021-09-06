@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode=production",
-    "start": "webpack serve --mode=development",
-    "eslint": "eslint --fix \"./**/*.{js,jsx}\"",
+    "eslint": "eslint --fix './**/*.{js,jsx}'",
     "format": "prettier -w .",
-    "test": "jest"
+    "build": "webpack --mode=production",
+    "start:frontend": "webpack serve --mode=development --open",
+    "start:backend": "cross-env NODE_ENV=production node index.js",
+    "start:test": "cross-env NODE_ENV=test node index.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand"
   },
   "license": "MIT",
   "devDependencies": {
@@ -69,5 +71,6 @@
   },
   "jest": {
     "testEnvironment": "jsdom"
-  }
+  },
+  "proxy": "http://localhost:5000/"
 }
