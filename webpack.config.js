@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
 module.exports = {
@@ -35,4 +36,10 @@ module.exports = {
   optimization: {
     minimizer: [new TerserPlugin()],
   },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+  ],
 };
