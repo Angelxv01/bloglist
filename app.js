@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(middleware.tokenExtractor);
 
 app.use("/health", (_req, res) => res.send("ok"));
-app.use("/version", (_req, res) => res.send("0.0.0-beta.2"));
+app.use("/version", (_req, res) => res.send("0.0.0-v10"));
 app.use("/api/blogs", blogsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
