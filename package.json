@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "eslint": "eslint --fix './**/*.{js,jsx}'",
+    "eslint": "eslint './**/*.{js,jsx}'",
     "format": "prettier -w .",
     "build": "webpack --mode=production",
     "start:frontend": "webpack serve --mode=development --open",
     "start:backend": "cross-env NODE_ENV=production node index.js",
     "start:test": "cross-env NODE_ENV=test node index.js",
-    "test": "cross-env NODE_ENV=test jest --runInBand"
+    "start": "node index.js",
+    "test": "cross-env NODE_ENV=test jest --runInBand",
+    "test:e2e": "cypress run"
   },
   "license": "MIT",
   "devDependencies": {

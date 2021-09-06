@@ -6,3 +6,4 @@ cypress/screenshots/
 
 # files
 .env
+secrets.txt
